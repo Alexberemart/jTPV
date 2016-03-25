@@ -1,0 +1,92 @@
+<div class="modal-header">
+</div>
+<div class="modal-body" id="ticketPanel">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                CARREFUUUUL
+                <BR>
+                C/falsa 123
+                <BR>
+                03690 San Vicent del Raspeig
+                <BR>
+                Alacran
+                <BR>
+                NIF: 666
+                <BR>
+                Telefono:
+                <BR>
+                <BR>
+            </div>
+            <div class="pull-left">
+                Nº Ticket 1
+                <BR>
+                Nº TPV 1
+            </div>
+            <div class="pull-right">
+                Fecha {{currentDate | date:'dd/MM/yyyy'}}
+                <BR>
+                Hora {{currentDate | date:'HH:mm'}}
+            </div>
+        </div>
+    </div>
+    <BR>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">
+                SU PRODUCTO
+            </div>
+            <div class="pull-right">
+                IMPORTE
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-repeat="item in transaction.transactionItemList">
+                <div class="pull-left">{{item.item.description}}</div>
+                <div ng-show="item.quantity != 1">
+                    <BR>
+                    <div class="pull-left" style="padding-left: 20px;">({{item.quantity}} x {{item.item.unitPrice |
+                        number : 2}})
+                    </div>
+                </div>
+                <div class="pull-right">{{item.price | number : 2}}</div>
+                <BR>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-repeat="item1 in transaction.transactionItemList | filter: {'discountAmount' : 0} : compareNotEquals">
+                <div class="pull-left">DESCUENTO {{item1.item.description}}</div>
+                <div class="pull-right">-{{item1.discountAmount | number : 2}}</div>
+                <BR>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">SUBTOTAL</div>
+            <div class="pull-right">{{transaction.subTotal}}</div>
+        </div>
+    </div>
+    <BR>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">{{transaction.transactionItemList.length}} ART. TOTAL A PAGAR</div>
+            <div class="pull-right">{{transaction.totalAmount | number : 2}}</div>
+        </div>
+    </div>
+    <BR>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">TASAS</div>
+            <div class="pull-right">{{transaction.taxesAmount | number : 2}}</div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="printToCart()">Imprimir</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+</div>
