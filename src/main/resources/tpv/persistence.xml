@@ -173,28 +173,4 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
 
-    <bean id="documentDAO"
-          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager">
-            <ref local="transactionManagerTpv"/>
-        </property>
-        <property name="target">
-            <ref local="documentDAOTarget"/>
-        </property>
-        <property name="transactionAttributes">
-            <props>
-                <prop key="makePersistent">PROPAGATION_REQUIRED</prop>
-                <prop key="find*">PROPAGATION_REQUIRED, readOnly</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="documentDAOTarget"
-          class="tpv.model.dao.impl.DocumentDAOImpl">
-        <qualifier value="target"/>
-        <property name="hibernateTemplate">
-            <ref local="hibernateTemplate"/>
-        </property>
-    </bean>
-
 </beans>
