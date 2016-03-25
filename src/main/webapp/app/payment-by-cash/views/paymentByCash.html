@@ -1,0 +1,40 @@
+<form class="form-horizontal" name="myForm" ng-submit="paymentByCashManager()">
+    <div class="modal-header">
+        <h3 class="modal-title">Pago en metalico</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <label for="exampleInputName2" class="col-xs-4 control-label">Importe (€)</label>
+            <div class="col-xs-8">
+                <input name="paymentAmountByCash" valid-amount-to-pay
+                       valid-amount-to-pay-remaining-amount="transaction.remainingAmount"
+                       valid-amount-to-pay-payment-method="paymentMethod"
+                       type="text" class="form-control" id="exampleInputName2" placeholder="Importe en metalico"
+                       ng-model="paymentAmountByCash"
+                       ng-model-onblur/>
+                <small class="text-danger" ng-show="myForm.paymentAmountByCash.$invalid">Debe de rellenar este campo con
+                    un valor correcto
+                </small>
+            </div>
+        </div>
+        <div class=" form-group">
+            <label for="exampleInputName2" class="col-xs-4 control-label">Restante a Pagar (€)</label>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" placeholder="Restante a Pagar"
+                       ng-model="transaction.remainingAmount" ng-disabled="true"/>
+            </div>
+        </div>
+        <div class=" form-group" ng-show="paymentMethod=='METALICO'">
+            <label for="exampleInputName2" class="col-xs-4 control-label">Cambio (€)</label>
+            <div class="col-xs-8">
+                <input type="text" class="form-control" placeholder="Cambio"
+                       ng-model="moneyToReturn" ng-disabled="true"/>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="submit" ng-disabled="myForm.$invalid || !myForm.$dirty">Registrar Pago</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancelar</button>
+    </div>
+</form>
