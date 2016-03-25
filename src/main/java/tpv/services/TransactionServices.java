@@ -2,7 +2,6 @@ package tpv.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import tpv.model.dao.TransactionDAO;
-import tpv.model.factory.DocumentFactory;
 import tpv.model.vo.Transaction;
 import tpv.util.ApplicationContextProvider;
 
@@ -10,9 +9,6 @@ public class TransactionServices {
 
     @Autowired
     TransactionDAO transactionDAO;
-
-    @Autowired
-    protected DocumentFactory documentFactory;
 
     public static TransactionServices getInstance() {
         return (TransactionServices) ApplicationContextProvider.getInstance().getBean("transactionServices");
