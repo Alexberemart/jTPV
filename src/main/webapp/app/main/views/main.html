@@ -1,0 +1,96 @@
+<div class="container">
+    <!--<div class="container-max-960">-->
+    <div class="col-sm-6 col-xs-12 padding-top">
+        <h4>Tpv</h4>
+        <div class="input-group width-100">
+            <input class="result-box" ng-model="itemCode"/>
+                <span class="input-group-btn" style="width: auto">
+                    <button ng-click="itemCode = ''" class="btn btn-default result-box" type="button">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    </span>
+        </div>
+
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('1')">1</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('4')">4</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('7')">7</button>
+            <button type="button" class="btn btn-danger btn-xlarge btn3d" ng-click="deleteTransactionItem()"><i
+                    class="fa fa-times fa-lg"></i></button>
+            <button class="btn btn-warning btn-xlarge btn3d" ng-click="getTicket()" ng-disabled="(transaction.transactionItemList.length === 0) || (transaction.remainingAmount !== 0)"><i class="fa fa-ticket"></i>
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('2')">2</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('5')">5</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('8')">8</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d">0</button>
+            <button type="button" class="btn btn-info btn-xlarge btn3d" ng-click="showPaymentByCash()" ng-disabled="!paymentAvailable()"><i
+                    class="fa fa-money"></i></button>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('3')">3</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('6')">6</button>
+            <button type="button" class="btn btn-primary btn-xlarge btn3d" ng-click="addNumber('9')">9</button>
+            <button type="button" class="btn btn-success btn-xlarge btn3d" ng-click="addTransactionItem()"><i
+                    class="fa fa-check fa-lg"></i></button>
+            <button type="button" class="btn btn-info btn-xlarge btn3d" ng-click="showPaymentByCreditCard()" ng-disabled="!paymentAvailable()"><i
+                    class="fa fa-credit-card"></i></button>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xs-12 padding-top">
+        <h4>Productos</h4>
+        <input class="result-box amount-box" ng-model="transaction.euroTotalAmount" ng-disabled="true"/>
+        <div class="panel panel-default">
+            <table class="table">
+                <thead>
+                <TR>
+                    <TH class="truncate firstColumn">
+                        <small>Cantidad</small>
+                    </TH>
+                    <TH class="truncate">
+                        <small>Descripción</small>
+                    </TH>
+                    <TH class="text-right truncate">
+                        <small>Precio</small>
+                    </TH>
+                    <TH class="text-right truncate">
+                        <small>Descuento</small>
+                    </TH>
+                    <TH class="text-right truncate">
+                        <small>Importe</small>
+                    </TH>
+                </TR>
+                </thead>
+                <tbody>
+                <TR ng-repeat="item in transaction.transactionItemList | orderBy: 'id'">
+                    <TD class="truncate"><a ng-click="lessQuantity(item.id)"><i class="fa fa-minus-circle"></i></a>
+                        {{item.quantity}}
+                        <a ng-click="addQuantity(item.id)"><i class="fa fa-plus-circle"></i></a>
+                    </TD>
+                    <TD class="truncate">{{item.item.description}}</TD>
+                    <TD class="text-right truncate">{{item.item.unitPrice}}</TD>
+                    <TD class="text-right truncate">{{item.discountAmount}}</TD>
+                    <TD class="text-right truncate">{{item.subTotal | number:2}}</TD>
+                </TR>
+                </tbody>
+            </table>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-xs-3">
+                        {{transaction.transactionItemList.length}} productos
+                    </div>
+                    <div class="col-xs-3">
+                        Subtotal {{transaction.subTotal}}
+                    </div>
+                    <div class="col-xs-3">
+                        Tasas {{transaction.taxesAmount}}
+                    </div>
+                    <div class="col-xs-3">
+                        Total {{transaction.totalAmount}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
