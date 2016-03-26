@@ -7,7 +7,7 @@
 
     <!-- Allows us to use system properties as variables in this configuration
        file -->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean class="tpv.config.TpvPropertyPlaceholderConfigurer">
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="order" value="0"/>
         <property name="locations">
@@ -33,7 +33,7 @@
         <property name="hibernateProperties">
             <props>
                 <prop key="javax.persistence.validation.mode">NONE</prop>
-                <prop key="hibernate.dialect">${tpv.hibernate.dialect.classname}</prop>
+                <prop key="hibernate.dialect">${tpv.hibernate.dialect.dialect}</prop>
                 <prop key="hibernate.hbm2ddl.auto">${tpv.hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.show_sql">${tpv.hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">true</prop>

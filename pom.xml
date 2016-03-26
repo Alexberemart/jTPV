@@ -15,6 +15,7 @@
         <spring.security.version>3.2.1.RELEASE</spring.security.version>
         <jersey.version>1.8</jersey.version>
         <xdocreport.version>1.0.4</xdocreport.version>
+        <hsqldb.version>2.3.2</hsqldb.version>
     </properties>
 
     <distributionManagement>
@@ -309,6 +310,12 @@
             <artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
             <version>${xdocreport.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!--<dependency>-->
             <!--<groupId>org.glassfish.jersey.containers</groupId>-->
@@ -341,6 +348,9 @@
                         <additionalClasspathElement>src/main/resources</additionalClasspathElement>
                         <additionalClasspathElement>src/test/java</additionalClasspathElement>
                     </additionalClasspathElements>
+                    <systemPropertyVariables>
+                        <environment>test</environment>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
             <plugin>
