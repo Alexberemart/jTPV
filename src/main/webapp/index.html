@@ -10,15 +10,20 @@
     <link rel="stylesheet" href="app/components/css/personal.css">
     <link rel="stylesheet" href="app/components/bower/ngtoast/dist/ngToast.min.css">
     <link rel="stylesheet" href="app/components/bower/ngtoast/dist/ngToast-animations.min.css">
+    <link rel="stylesheet" href="app/components/css/sticky-footer.css">
 </head>
 <body>
+
 <toast></toast>
-<div ui-view="content" class="main-content-view"></div>
+
+<div class="container">
+    <div ui-view="content" class="main-content-view"></div>
+</div>
 
 <div class="footer">
     <div class="container">
         <div class="row center-block">
-            <p class="text-muted">@Copyright Alexberemart 2014 | <a ng-href="mailto:{{email.mail}}">Contact</a></p>
+            <p class="text-muted">@Copyright Alexberemart 2014 | <a ng-href="mailto:alexberemart@gmail.com">Contact</a></p>
         </div>
     </div>
 </div>
