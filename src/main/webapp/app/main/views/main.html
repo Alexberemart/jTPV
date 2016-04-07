@@ -1,7 +1,6 @@
-<div class="container">
+<div class="row" style="padding-top: 15px;">
     <!--<div class="container-max-960">-->
     <div class="col-sm-6 col-xs-12 padding-top">
-        <h4>Tpv</h4>
         <div class="input-group width-100">
             <input class="result-box" ng-model="itemCode"/>
                 <span class="input-group-btn" style="width: auto">
@@ -39,7 +38,6 @@
         </div>
     </div>
     <div class="col-sm-6 col-xs-12 padding-top">
-        <h4>Productos</h4>
         <input class="result-box amount-box" ng-model="transaction.euroTotalAmount" ng-disabled="true"/>
         <div class="panel panel-default">
             <table class="table">
@@ -64,14 +62,14 @@
                 </thead>
                 <tbody>
                 <TR ng-repeat="item in transaction.transactionItemList | orderBy: 'id'">
-                    <TD class="truncate"><a ng-click="lessQuantity(item.id)"><i class="fa fa-minus-circle"></i></a>
+                    <TD class="truncate firstColumn"><a ng-click="lessQuantity(item.id)"><i class="fa fa-minus-circle"></i></a>
                         {{item.quantity}}
                         <a ng-click="addQuantity(item.id)"><i class="fa fa-plus-circle"></i></a>
                     </TD>
                     <TD class="truncate">{{item.item.description}}</TD>
-                    <TD class="text-right truncate">{{item.item.unitPrice}}</TD>
-                    <TD class="text-right truncate">{{item.discountAmount}}</TD>
-                    <TD class="text-right truncate">{{item.subTotal | number:2}}</TD>
+                    <TD class="text-right truncate">{{item.item.unitPrice |currency}}</TD>
+                    <TD class="text-right truncate">{{item.discountAmount |currency}}</TD>
+                    <TD class="text-right truncate lastColumn">{{item.subTotal | currency}}</TD>
                 </TR>
                 </tbody>
             </table>
@@ -81,13 +79,13 @@
                         {{transaction.transactionItemList.length}} productos
                     </div>
                     <div class="col-xs-3">
-                        Subtotal {{transaction.subTotal}}
+                        Subtotal {{transaction.subTotal |currency}}
                     </div>
                     <div class="col-xs-3">
-                        Tasas {{transaction.taxesAmount}}
+                        Tasas {{transaction.taxesAmount |currency}}
                     </div>
                     <div class="col-xs-3">
-                        Total {{transaction.totalAmount}}
+                        Total {{transaction.totalAmount |currency}}
                     </div>
                 </div>
             </div>
