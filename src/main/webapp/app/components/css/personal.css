@@ -67,3 +67,10 @@ thead {
 .lastColumn {
   padding-right: 8px !important;
 }
+.table > tfoot > tr > td {
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+.table > tfoot > tr:not(:first-child) > td {
+  border: none;
+}

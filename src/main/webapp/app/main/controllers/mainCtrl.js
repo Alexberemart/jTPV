@@ -25,6 +25,8 @@ angular.module('app.Controllers')
                             array[index].subTotal = parseFloat((array[index].price - array[index].discountAmount).toFixed(2));
                         })
                     }
+                }else{
+                    $scope.transaction.subTotal = 0;
                 }
                 $scope.transaction.euroTotalAmount = $filter('currency')($scope.transaction.totalAmount);
             });
