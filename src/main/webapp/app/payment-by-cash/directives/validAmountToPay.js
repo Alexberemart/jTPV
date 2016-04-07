@@ -13,7 +13,6 @@ angular.module('app.Directives')
                 var validAmountToPayPaymentMethod = scope.validAmountToPayPaymentMethod;
 
                 ngModel.$parsers.push(function (value) {
-                    debugger;
                     console.log(validAmountToPayRemainingAmount);
                     var valid = true;
 

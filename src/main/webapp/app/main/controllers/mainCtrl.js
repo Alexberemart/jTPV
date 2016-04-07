@@ -18,11 +18,13 @@ angular.module('app.Controllers')
             };
 
             $scope.$watch('transaction', function (newValue, oldValue) {
-                $scope.transaction.subTotal = parseFloat(($scope.transaction.price - $scope.transaction.discountAmount).toFixed(2));
-                if (!!$scope.transaction.transactionItemList) {
-                    $scope.transaction.transactionItemList.forEach(function (element, index, array) {
-                        array[index].subTotal = parseFloat((array[index].price - array[index].discountAmount).toFixed(2));
-                    })
+                if (!!$scope.transaction.price) {
+                    $scope.transaction.subTotal = parseFloat(($scope.transaction.price - $scope.transaction.discountAmount).toFixed(2));
+                    if (!!$scope.transaction.transactionItemList) {
+                        $scope.transaction.transactionItemList.forEach(function (element, index, array) {
+                            array[index].subTotal = parseFloat((array[index].price - array[index].discountAmount).toFixed(2));
+                        })
+                    }
                 }
                 $scope.transaction.euroTotalAmount = $filter('currency')($scope.transaction.totalAmount);
             });
