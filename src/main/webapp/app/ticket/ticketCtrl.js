@@ -15,6 +15,8 @@ angular.module('app.Controllers')
                         popupWinindow.document.close();
                     }
                 });
+                $uibModalInstance.dismiss('cancel');
+                $rootScope.$broadcast('ticketPrintedEvent');
             };
             $scope.compareNotEquals = function (actual, expected) {
                 return actual !== expected;
