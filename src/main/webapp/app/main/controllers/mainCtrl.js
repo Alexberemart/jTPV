@@ -50,7 +50,7 @@ angular.module('app.Controllers')
                 url += '?itemCode=' + $scope.itemCode;
                 url += '&transactionId=' + $scope.transaction.id;
                 $http.delete(url)
-                    .success(showSuccess)
+                    .success(showSuccessWithError)
                     .error(showError)
                     .finally(function () {
                         $scope.itemCode = "";
@@ -150,6 +150,10 @@ angular.module('app.Controllers')
 
             $scope.$on('paymentByCashEvent', function (event, data) {
                 showSuccess(data.transaction);
+            });
+
+            $scope.$on('ticketPrintedEvent', function (event, data) {
+                createTransaction();
             });
 
             $scope.paymentAvailable = function(){

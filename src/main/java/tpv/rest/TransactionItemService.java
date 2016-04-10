@@ -31,7 +31,7 @@ public class TransactionItemService extends AbstractRestService {
         if (item == null) {
             //TODO: show error
             result.put("status", -1);
-            result.put("result", "Item with code " + code + " was not found");
+            result.put("result", "No se encuentra el producto con código " + code);
             return ok(result);
         }
 
@@ -71,6 +71,14 @@ public class TransactionItemService extends AbstractRestService {
     ) throws Exception {
 
         List<TransactionItem> transactionItemList = TransactionITemServices.getInstance().getTransactionItemsByItemCode(transactionId, itemCode);
+        HashMap<String, Object> result = new HashMap<>();
+
+        if (transactionItemList == null) {
+            //TODO: show error
+            result.put("status", -1);
+            result.put("result", "No existe el producto " + itemCode + " dentro de la lista de productos");
+            return ok(result);
+        }
 
         for (TransactionItem transactionItem : transactionItemList){
             if (transactionItem.getQuantity() == 1) {
@@ -82,7 +90,9 @@ public class TransactionItemService extends AbstractRestService {
         }
 
         Transaction transaction = TransactionServices.getInstance().getById(transactionId);
-        return ok(transaction);
+        result.put("status", 0);
+        result.put("result", transaction);
+        return ok(result);
     }
 
     @POST
@@ -120,7 +130,7 @@ public class TransactionItemService extends AbstractRestService {
         TransactionItem transactionItem = TransactionITemServices.getInstance().getById(transactionItemID);
         if (transactionItem.getQuantity() == 1){
             result.put("status", -1);
-            result.put("result", "quantity must be greater than zero");
+            result.put("result", "La cantidad debe de ser mayor que cero");
             return ok(result);
         }
         transactionItem.setQuantity(transactionItem.getQuantity() - 1);
